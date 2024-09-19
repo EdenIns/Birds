@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
 const articlesRoutes = require("./routes/articlesRoutes");
+const usersRoutes = require("./routes/usersRoutes");
 
 const app = express();
 
@@ -26,5 +27,6 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 app.use("/api/article", articlesRoutes);
+app.use("/api/user", usersRoutes);
 
 module.exports = app;
