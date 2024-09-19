@@ -2,6 +2,8 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const path = require("path");
+
 const articlesRoutes = require("./routes/articlesRoutes");
 const usersRoutes = require("./routes/usersRoutes");
 
@@ -25,6 +27,8 @@ mongoose
 app.use(cors(corsOptions));
 
 app.use(express.json());
+
+app.use("/images", express.static(path.join(__dirname, "images")));
 
 app.use("/api/article", articlesRoutes);
 app.use("/api/user", usersRoutes);

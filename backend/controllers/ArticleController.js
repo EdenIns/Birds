@@ -1,8 +1,13 @@
 const Article = require("../models/Article");
 
 exports.createArticle = (req, res) => {
+  const articleObj = req.body;
   const article = new Article({
-    ...req.body,
+    ...articleObj,
+    userId: req.auth.userId,
+    imageUrl: `${req.protocol}://${req.get("host")}/assets/images/${
+      req.file.filename
+    }`,
   });
   article
     .save()
@@ -24,6 +29,6 @@ exports.getArticles = (req, res) => {
 
 exports.deleteArticle = (req, res) => {
   Article.deleteOne({ _id: req.params.id })
-    .then(() => res.status(200).json({ message: 'Article supprimé !'}))
-    .catch(error => res.status(400).json({ error }));
+    .then(() => res.status(200).json({ message: "Article supprimé !" }))
+    .catch((error) => res.status(400).json({ error }));
 };
