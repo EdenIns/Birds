@@ -2,12 +2,11 @@ const Article = require("../models/Article");
 
 exports.createArticle = (req, res) => {
   const articleObj = req.body;
+  const imageUrl = req.file ? `assets/pictures/${req.file.filename}` : ''; 
   const article = new Article({
     ...articleObj,
     userId: req.auth.userId,
-    imageUrl: `${req.protocol}://${req.get("host")}/assets/images/${
-      req.file.filename
-    }`,
+    imageUrl: imageUrl
   });
   article
     .save()
