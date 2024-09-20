@@ -1,0 +1,82 @@
+<template>
+    <h1>Connexion</h1>
+    <main>
+        <BForm @submit="onSubmit">
+
+            <BFormGroup id="input-group-1" label="Adresse email:" label-for="email">
+                <BFormInput id="email" v-model="form.email" type="email"
+                    :class="{ 'is-invalid': validated && !emailState }" placeholder="Entrer un email" />
+                <div v-if="validated && !emailState" class="text-danger">
+                    Adresse email invalide
+                </div>
+            </BFormGroup>
+
+            <BFormGroup id="input-group-3" label="Mot de passe:" label-for="password">
+                <BFormInput id="password" v-model="form.password" type="password"
+                    :class="{ 'is-invalid': validated && !passwordState }" placeholder="Entrer un mot de passe"
+                    required />
+                <span>Le mot de passe doit être entre 8 et 12 caractères et doit contenir au moins 1 majuscule, au moins
+                    1
+                    minuscule et 1 caractère spécial.</span>
+                <div v-if="validated && !passwordState" class="text-danger">
+                    Mot de passe invalide
+                </div>
+            </BFormGroup>
+
+            <BButton type="submit">Connexion</BButton>
+        </BForm>
+    </main>
+</template>
+
+<script setup>
+import { reactive, computed, ref } from 'vue';
+import { BForm, BFormGroup, BFormInput, BButton } from 'bootstrap-vue-next';
+import { useRouter } from 'vue-router';
+import Users from '../api/Users';
+import { useAuthStore } from '../stores/AuthStore';
+
+const form = reactive({
+    email: '',
+    password: ''
+});
+
+const validated = ref(false);
+
+const emailState = computed(() => {
+    const emailRegex = /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/;
+    return emailRegex.test(form.email);
+});
+
+const passwordState = computed(() => {
+    const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,12}$/;
+    return passwordRegex.test(form.password);
+});
+
+const router = useRouter();
+const authStore = useAuthStore();
+
+const onSubmit = async (event) => {
+    event.preventDefault();
+    validated.value = true;
+
+    if (!emailState.value || !passwordState.value) {
+        alert('Veuillez corriger les erreurs dans le formulaire.');
+        return;
+    }
+
+    try {
+        const response = await Users.login(form);
+        const authToken = response.token
+        authStore.login(authToken);
+        router.push("./articles");
+    } catch {
+        alert("Problème lors de la connexion.");
+    };
+};
+</script>
+
+<style>
+.is-invalid {
+    border: 1px solid red;
+}
+</style>

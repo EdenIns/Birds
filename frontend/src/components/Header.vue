@@ -5,8 +5,15 @@
         <BCollapse id="nav-collapse" is-nav>
             <BNavbarNav>
                 <BNavItem><router-link to="/articles">Articles</router-link></BNavItem>
-                <!-- <BNavItem href="#">Inscription</BNavItem>
-                <BNavItem href="#">Connexion</BNavItem> -->
+                <BNavItem v-if="!authStore.isAuthenticated">
+                    <router-link to="/signup">Inscription</router-link>
+                </BNavItem>
+                <BNavItem v-if="!authStore.isAuthenticated">
+                    <router-link to="/login">Connexion</router-link>
+                </BNavItem>
+                <BNavItem v-if="authStore.isAuthenticated" @click="clickLogout">
+                    Déconnexion
+                </BNavItem>
             </BNavbarNav>
         </BCollapse>
     </BNavbar>
@@ -14,6 +21,16 @@
 
 <script setup>
 import { BNavbar, BNavbarBrand, BNavbarToggle, BCollapse, BNavbarNav, BNavItem, BNavItemDropdown, BDropdownItem, BNavForm, BFormInput, BButton } from 'bootstrap-vue-next';
+import { useAuthStore } from '../stores/AuthStore';
+import { useRouter } from 'vue-router';
+
+const authStore = useAuthStore();
+const router = useRouter();
+
+function clickLogout() {
+    authStore.logout();
+}
+
 </script>
 
 <style>
