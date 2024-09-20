@@ -1,6 +1,7 @@
 <template>
     <div>
         <h1>Voir les articles</h1>
+        <BButton><router-link to="addNewArticle">Ajouter un nouvel article</router-link></BButton>
         <main>
             <BCard v-for="article in articles" :key="article._id">
                 <BCardImg :src="article.imageUrl" alt="Image" />
@@ -10,7 +11,6 @@
                 </BCardBody>
                 <BButton @click="deleteArticle(article._id)">Supprimer l'article</BButton>
             </BCard>
-            <BButton><router-link to="addNewArticle">Ajouter un nouvel article</router-link></BButton>
         </main>
     </div>
 </template>

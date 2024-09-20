@@ -1,14 +1,13 @@
 <template>
+  <Header />
   <BContainer>
-    <Header />
     <RouterView />
-    <Footer />
-
   </BContainer>
+  <Footer />
 </template>
 
 <script setup>
-import { BContainer, BRow, BCol } from 'bootstrap-vue-next';
+import { BContainer } from 'bootstrap-vue-next';
 import Header from './components/Header.vue';
 import { RouterView } from 'vue-router';
 
