@@ -1,7 +1,7 @@
 <template>
-    <h1>Connexion</h1>
-    <main>
-        <BForm @submit="onSubmit">
+    <h1 class="d-flex justify-content-center mt-4">Connexion</h1>
+    <main class="d-flex justify-content-center">
+        <BForm @submit="onSubmit" class="form col-md-6 mt-4">
 
             <BFormGroup id="input-group-1" label="Adresse email:" label-for="email">
                 <BFormInput id="email" v-model="form.email" type="email"
@@ -11,19 +11,21 @@
                 </div>
             </BFormGroup>
 
-            <BFormGroup id="input-group-3" label="Mot de passe:" label-for="password">
+            <BFormGroup class="mt-3" id="input-group-3" label="Mot de passe:" label-for="password">
                 <BFormInput id="password" v-model="form.password" type="password"
                     :class="{ 'is-invalid': validated && !passwordState }" placeholder="Entrer un mot de passe"
                     required />
-                <span>Le mot de passe doit être entre 8 et 12 caractères et doit contenir au moins 1 majuscule, au moins
+                <span class="span">Le mot de passe doit être entre 8 et 12 caractères et doit contenir au moins 1
+                    majuscule, au moins
                     1
                     minuscule et 1 caractère spécial.</span>
                 <div v-if="validated && !passwordState" class="text-danger">
                     Mot de passe invalide
                 </div>
             </BFormGroup>
-
-            <BButton type="submit">Connexion</BButton>
+            <div class="d-flex justify-content-center ">
+                <BButton class="btn-color mt-4" type="submit">Connexion</BButton>
+            </div>
         </BForm>
     </main>
 </template>
@@ -78,5 +80,23 @@ const onSubmit = async (event) => {
 <style>
 .is-invalid {
     border: 1px solid red;
+}
+
+.form {
+    border: 1px solid #7105bc;
+    border-radius: 5%;
+    padding: 5%
+}
+
+.span {
+    font-size: 70%;
+}
+
+.btn-color {
+    background-color: #7105bc !important;
+}
+
+.btn-color:hover{
+    background-color: rgb(158, 79, 233) !important;
 }
 </style>
