@@ -23,7 +23,7 @@
                         <router-link class="routerLink" to="/login">Connexion</router-link>
                     </BNavItem>
                     <BNavItem v-if="authStore.isAuthenticated" @click="clickLogout">
-                        Déconnexion
+                        <p class="deco">Déconnexion</p>
                     </BNavItem>
                 </BNavbarNav>
             </BCol>
@@ -64,5 +64,9 @@ function clickLogout() {
     width: 50px;
     height: auto;
     object-fit: contain;
+}
+
+.deco{
+    color:white;
 }
 </style>
