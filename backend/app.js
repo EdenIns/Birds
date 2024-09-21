@@ -28,7 +28,7 @@ app.use(cors(corsOptions));
 
 app.use(express.json());
 
-app.use("/images", express.static(path.join(__dirname, "images")));
+app.use("/assets", express.static(path.join(__dirname, "assets")));
 
 app.use("/api/article", articlesRoutes);
 app.use("/api/user", usersRoutes);
