@@ -26,6 +26,14 @@
 import { reactive } from 'vue';
 import { BForm, BFormGroup, BFormInput, BButton } from 'bootstrap-vue-next';
 import Articles from '../api/Articles';
+import { useAuthStore } from '../stores/AuthStore';
+import { useRouter } from 'vue-router';
+
+const authStore = useAuthStore();
+const router = useRouter();
+if (!authStore.isAuthenticated) {
+    router.push('/login');
+  }
 
 const form = reactive({
     title: '',
