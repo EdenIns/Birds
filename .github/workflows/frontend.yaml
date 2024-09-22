@@ -43,7 +43,8 @@ jobs:
       - name: Start the frontend application
         run: |
           cd frontend
-          npm run dev
+          npm run dev &
+          sleep 20
 
       - name: Run Cypress tests
         run: |
