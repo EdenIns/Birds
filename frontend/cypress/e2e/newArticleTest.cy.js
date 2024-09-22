@@ -40,6 +40,7 @@ describe("Ajouter un nouvel article", () => {
   it("Echec à l'ajout d'un nouvel article", () => {
     cy.visit("/addNewArticle");
 
+    cy.get('[data-cy="title"]').type("test article");
     cy.get('[data-cy="description"]').type("test ajout d'un article");
     cy.get('[data-cy="image"]').attachFile("typetestImage.png");
 
@@ -47,12 +48,12 @@ describe("Ajouter un nouvel article", () => {
       method: "POST",
       url: `${apiUrl}article`,
       headers: {
-        Authorization: `Bearer ${token}`,
+        Authorization: `Bearer`,
       },
     }).as("addArticle");
 
     cy.get('[data-cy="send-button"]').click();
 
-    cy.wait("@addArticle").its("response.statusCode").should("eq", 400);
+    cy.wait("@addArticle").its("response.statusCode").should("eq", 401);
   });
 });

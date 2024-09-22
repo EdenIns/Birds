@@ -1,4 +1,5 @@
 import { BASE_URL, axios } from "../config";
+const token = localStorage.getItem("Token");
 
 export default class Articles {
   
@@ -12,14 +13,13 @@ export default class Articles {
     }
   }
 
-  static async createArticle(newArticle) {
+  static async createArticle(formData) {
     try {
-      console.log(newArticle);
-      const response = await axios.post(`${BASE_URL}/article`, {
-        title: newArticle.title,
-        description: newArticle.description,
-        imageUrl: newArticle.imageUrl,
-        userId: "12345",
+      const response = await axios.post(`${BASE_URL}/article`, formData,
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       return response.data;
     } catch (error) {

@@ -22,6 +22,9 @@
                     <BNavItem v-if="!authStore.isAuthenticated">
                         <router-link class="routerLink" to="/login">Connexion</router-link>
                     </BNavItem>
+                    <BNavItem v-if="authStore.isAuthenticated">
+                        <router-link class="routerLink" to="/addNewArticle">Ajouter un article</router-link>
+                    </BNavItem>
                     <BNavItem v-if="authStore.isAuthenticated" @click="clickLogout">
                         <p class="deco">Déconnexion</p>
                     </BNavItem>

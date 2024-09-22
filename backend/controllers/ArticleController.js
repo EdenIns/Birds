@@ -2,7 +2,7 @@ const Article = require("../models/Article");
 
 exports.createArticle = (req, res) => {
   const articleObj = req.body;
-  const imageUrl = req.file ? `assets/images/${req.file.filename}` : ''; 
+  const imageUrl = req.file ? `assets/images/${req.file.filename}` : '';
   const article = new Article({
     ...articleObj,
     userId: req.auth.userId,
@@ -10,8 +10,8 @@ exports.createArticle = (req, res) => {
   });
   article
     .save()
-    .then(() => res.status(201).json({ message: "Article enregistré !" }))
-    .catch((error) => res.status(400).json({ error }));
+    .then(() => res.status(201).json({ article, message: "Article enregistré !" }))
+    .catch((error) => res.status(400).json({ article, error }));
 };
 
 exports.getOneArticle = (req, res) => {
