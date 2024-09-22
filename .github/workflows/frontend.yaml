@@ -14,7 +14,7 @@ concurrency:
   cancel-in-progress: true
 
 jobs:
-  backend:
+  frontend:
     runs-on: ubuntu-latest
 
     services:
