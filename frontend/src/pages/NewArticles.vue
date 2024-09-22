@@ -1,19 +1,19 @@
 <template>
-    <BForm @submit="onSubmit">
+    <BForm @submit="onSubmit" data-cy="newArticle-form">
         <BFormGroup id="input-group-1" label="Titre" label-for="title">
-            <BFormInput id="title" v-model="form.title" type="text" placeholder="Entrer un titre" required />
+            <BFormInput id="title" data-cy="title" v-model="form.title" type="text" placeholder="Entrer un titre" required />
         </BFormGroup>
 
         <BFormGroup id="input-group-2" label="Description" label-for="description">
-            <BFormInput id="description" v-model="form.description" placeholder="Entrer une description pour votre article"
+            <BFormInput id="description" data-cy="description" v-model="form.description" placeholder="Entrer une description pour votre article"
                 required />
         </BFormGroup>
 
         <BFormGroup id="input-group-3" label="Image" label-for="image">
-            <BFormInput id="image" type="file" @change="handleFileChange" accept="image/*"/>
+            <BFormInput id="image" data-cy="image" type="file" @change="handleFileChange" accept="image/*"/>
         </BFormGroup>
 
-        <BButton type="submit" >Poster l'article</BButton>
+        <BButton type="submit" data-cy="send-button">Poster l'article</BButton>
     </BForm>
 
 </template>

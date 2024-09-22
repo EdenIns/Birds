@@ -4,7 +4,7 @@
         <BForm @submit="onSubmit" class="form col-md-6 mt-4">
 
             <BFormGroup id="input-group-1" label="Adresse email:" label-for="email">
-                <BFormInput id="email" v-model="form.email" type="email"
+                <BFormInput id="email" data-cy="email" v-model="form.email" type="email"
                     :class="{ 'is-invalid': validated && !emailState }" placeholder="Entrer un email" />
                 <div v-if="validated && !emailState" class="text-danger">
                     Adresse email invalide
@@ -12,7 +12,7 @@
             </BFormGroup>
 
             <BFormGroup class="mt-3" id="input-group-3" label="Mot de passe:" label-for="password">
-                <BFormInput id="password" v-model="form.password" type="password"
+                <BFormInput id="password" data-cy="password" v-model="form.password" type="password"
                     :class="{ 'is-invalid': validated && !passwordState }" placeholder="Entrer un mot de passe"
                     required />
                 <span class="span">Le mot de passe doit être entre 8 et 12 caractères et doit contenir au moins 1
@@ -24,7 +24,7 @@
                 </div>
             </BFormGroup>
             <div class="d-flex justify-content-center ">
-                <BButton class="btn-color mt-4" type="submit">Connexion</BButton>
+                <BButton class="btn-color mt-4" type="submit" data-cy="send-button">Connexion</BButton>
             </div>
         </BForm>
     </main>

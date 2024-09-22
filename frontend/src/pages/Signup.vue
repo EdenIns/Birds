@@ -1,10 +1,10 @@
 <template>
     <h1 class="d-flex justify-content-center mt-4">Inscription</h1>
     <main class="d-flex justify-content-center">
-        <BForm @submit="onSubmit" class="form col-md-6 mt-4">
+        <BForm @submit="onSubmit" class="form col-md-6 mt-4" data-cy="signup-form">
 
             <BFormGroup id="input-group-1" label="Adresse email:" label-for="email">
-                <BFormInput id="email" v-model="form.email" type="email"
+                <BFormInput id="email" data-cy="email" v-model="form.email" type="email"
                     :class="{ 'is-invalid': validated && !emailState }" placeholder="Entrer un email" />
                 <div v-if="validated && !emailState" class="text-danger">
                     Adresse email invalide
@@ -12,7 +12,7 @@
             </BFormGroup>
 
             <BFormGroup id="input-group-2" class="mt-3" label="Pseudo:" label-for="pseudo">
-                <BFormInput id="pseudo" v-model="form.pseudo"
+                <BFormInput id="pseudo" data-cy="pseudo" v-model="form.pseudo"
                     :class="{ 'is-invalid': validated && form.pseudo.length < 4 }" type="text"
                     placeholder="Entrer un pseudo" required />
                 <div v-if="validated && form.pseudo.length < 4" class="text-danger">
@@ -21,7 +21,7 @@
             </BFormGroup>
 
             <BFormGroup id="input-group-3" class="mt-3" label="Mot de passe:" label-for="password">
-                <BFormInput id="password" v-model="form.password" type="password"
+                <BFormInput id="password" data-cy="password" v-model="form.password" type="password"
                     :class="{ 'is-invalid': validated && !passwordState }" placeholder="Entrer un mot de passe"
                     required />
                 <span class="span">Le mot de passe doit être entre 8 et 12 caractères et doit contenir au moins 1 majuscule, au moins
@@ -32,7 +32,7 @@
                 </div>
             </BFormGroup>
             <div class="d-flex justify-content-center ">
-                <BButton class="btn-color mt-4" type="submit">S'inscrire</BButton>
+                <BButton class="btn-color mt-4" type="submit" data-cy="send-button">S'inscrire</BButton>
             </div>
         </BForm>
     </main>
