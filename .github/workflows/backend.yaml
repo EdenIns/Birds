@@ -25,6 +25,7 @@ jobs:
 
     env:
       MONGO_URI: mongodb://localhost:27017/birds
+      JWT_SECRET: ${{ secrets.JWT_SECRET }}
 
     steps:
       - name: Checkout repository
