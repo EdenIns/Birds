@@ -7,6 +7,7 @@ import Articles from "./pages/Articles.vue";
 import NewArticles from "./pages/NewArticles.vue";
 import Signup from "./pages/Signup.vue";
 import Login from "./pages/Login.vue";
+import UserProfil from "./pages/UserProfil.vue";
 import App from "./App.vue";
 
 import "bootstrap/dist/css/bootstrap.css";
@@ -18,6 +19,7 @@ const routes = [
   { path: "/addNewArticle", component: NewArticles },
   { path: "/signup", component: Signup },
   { path: "/login", component: Login },
+  { path: "/userProfil", component: UserProfil },
 ];
 
 const router = createRouter({

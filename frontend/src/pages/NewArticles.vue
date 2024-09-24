@@ -1,4 +1,5 @@
 <template>
+    <h1 class="d-flex justify-content-center mt-4">Ajouter un article</h1>
     <main class="d-flex justify-content-center">
         <BForm @submit="onSubmit" data-cy="newArticle-form" class="form col-md-6 mt-4">
             <BFormGroup id="input-group-1" label="Titre" label-for="title">
@@ -33,7 +34,7 @@ const authStore = useAuthStore();
 const router = useRouter();
 if (!authStore.isAuthenticated) {
     router.push('/login');
-  }
+}
 
 const form = reactive({
     title: '',

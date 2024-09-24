@@ -5,7 +5,7 @@ const articleSchema = mongoose.Schema({
   description: { type: String, required: true },
   imageUrl: { type: String, required: true },
   createdAt: { type: Date, default: Date.now, required: true },
-  userId: { type: String, required: true },
+  userId: { type: mongoose.Schema.Types.ObjectId, ref: "User", required: true },
 });
 
 module.exports = mongoose.model("Article", articleSchema);

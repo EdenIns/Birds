@@ -5,6 +5,8 @@ const multer = require('../middleware/multer');
 
 const router = express.Router();
 
+router.get("/articlesUserConnected", auth, articleController.getArticlesUserConnected);
+
 router.post("/", auth, multer, articleController.createArticle);
 router.get("/:id", articleController.getOneArticle);
 router.get("/", articleController.getArticles);

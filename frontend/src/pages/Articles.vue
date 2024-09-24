@@ -1,23 +1,18 @@
 <template>
     <div>
         <h1 class="d-flex justify-content-center mt-4 mb-4">Fil d'actualité</h1>
-        <!-- <BButton><router-link to="addNewArticle">Ajouter un nouvel article</router-link></BButton> -->
-        <main>
-            <BCard v-for="article in articles" :key="article._id" class="col-md-4">
-                <BRow class="d-flex flex-column">
-                    <BCol>
-                        <BCardBody>
-                            <BCardTitle>{{ article.title }}</BCardTitle>
-                            <p>{{ article.description }}</p>
-                        </BCardBody>
-                        <!-- <BButton @click="deleteArticle(article._id)">Supprimer l'article</BButton> -->
-                    </BCol>
-                    <BCol>
-                        <BCardImg :src="baseUrl + article.imageUrl" alt="Image" class="images" />
-                    </BCol>
-                </BRow>
-            </BCard>
-        </main>
+
+        <BRow class="g-4">
+            <BCol v-for="article in articles" :key="article._id" cols="12" md="6">
+                <BCard>
+                    <BCardImg :src="baseUrl + article.imageUrl" alt="Image de l'article" class="images" />
+                    <BCardBody>
+                        <BCardTitle>{{ article.title }}</BCardTitle>
+                        <p>{{ article.description }}</p>
+                    </BCardBody>
+                </BCard>
+            </BCol>
+        </BRow>
     </div>
 </template>
 
@@ -38,27 +33,13 @@ const fetchArticles = async () => {
     }
 };
 
-const deleteArticle = async idArticle => {
-    const confirmed = window.confirm(
-        "Êtes-vous sûr de vouloir supprimer cette article ?"
-    );
-    if (confirmed) {
-        try {
-            await Articles.deleteArticle(idArticle);
-            fetchArticles();
-        } catch (error) {
-            console.error("Erreur lors de la suppression de l'article:", error);
-        }
-    }
-}
-
 onMounted(fetchArticles);
 </script>
 
 <style>
 .images {
-    width: 250px;
-    height: 250px;
+    width: 200px;
+    height: 200px;
     object-fit: contain;
 }
 </style>
